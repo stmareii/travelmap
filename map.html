@@ -1,120 +1,76 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Карта Leaflet</title>
+    <link rel="stylesheet" href="travelmap/leaflet.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
     
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <!-- Подключение стилей и скриптов -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
     
-        <script>
-            L_NO_TOUCH = false;
-            L_DISABLE_3D = false;
-        </script>
-    
-    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
-    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Контейнер для карты -->
+    <div id="map"></div>
+
+    <!-- Подключение скриптов -->
     <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
-    
-            <meta name="viewport" content="width=device-width,
-                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-            <style>
-                #map_28390b5cbcaae705a3b05c3233740f39 {
-                    position: relative;
-                    width: 100.0%;
-                    height: 100.0%;
-                    left: 0.0%;
-                    top: 0.0%;
-                }
-                .leaflet-container { font-size: 1rem; }
-            </style>
-        
-</head>
-<body>
-    
-    
-            <div class="folium-map" id="map_28390b5cbcaae705a3b05c3233740f39" ></div>
-        
+
+    <script>
+        $(document).ready(function() {
+            // Создание карты
+            var map = L.map('map', {
+                center: [55.751244, 37.618423], // Координаты центра (Москва)
+                zoom: 10
+            });
+
+            // Добавление слоя OpenStreetMap
+            L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                attribution: "&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors",
+                minZoom: 0,
+                maxZoom: 19
+            }).addTo(map);
+
+            // Массив с местами
+            var places = [
+                { name: "Москва", coords: [55.751244, 37.618423] },
+                { name: "Санкт-Петербург", coords: [59.9342802, 30.3350986] }
+            ];
+
+            // Добавление маркеров для каждого места
+            places.forEach(function(place) {
+                var marker = L.marker(place.coords).addTo(map);
+                marker.bindPopup("<b>" + place.name + "</b>").openPopup(); // Всплывающее окно
+                marker.bindTooltip("Кликните для информации", { sticky: true }); // Подсказка
+            });
+
+            // Обновление размеров карты при изменении окна
+            $(window).resize(function() {
+                map.invalidateSize();
+            });
+        });
+    </script>
 </body>
-<script>
-    
-    
-            var map_28390b5cbcaae705a3b05c3233740f39 = L.map(
-                "map_28390b5cbcaae705a3b05c3233740f39",
-                {
-                    center: [55.751244, 37.618423],
-                    crs: L.CRS.EPSG3857,
-                    ...{
-  "zoom": 10,
-  "zoomControl": true,
-  "preferCanvas": false,
-}
-
-                }
-            );
-
-            
-
-        
-    
-            var tile_layer_bcd8bfc128d9c0fbacca85b5c907c55d = L.tileLayer(
-                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-                {
-  "minZoom": 0,
-  "maxZoom": 19,
-  "maxNativeZoom": 19,
-  "noWrap": false,
-  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
-  "subdomains": "abc",
-  "detectRetina": false,
-  "tms": false,
-  "opacity": 1,
-}
-
-            );
-        
-    
-            tile_layer_bcd8bfc128d9c0fbacca85b5c907c55d.addTo(map_28390b5cbcaae705a3b05c3233740f39);
-        
-    
-            var marker_81abc316a04d3dd56dd6d36471133f69 = L.marker(
-                [55.751244, 37.618423],
-                {
-}
-            ).addTo(map_28390b5cbcaae705a3b05c3233740f39);
-        
-    
-        var popup_64061f15ef8f4e50af424e1d7888dc79 = L.popup({
-  "maxWidth": "100%",
-});
-
-        
-            
-                var html_7ec66294ec806c40dcb89f45c98120bc = $(`<div id="html_7ec66294ec806c40dcb89f45c98120bc" style="width: 100.0%; height: 100.0%;">Москва</div>`)[0];
-                popup_64061f15ef8f4e50af424e1d7888dc79.setContent(html_7ec66294ec806c40dcb89f45c98120bc);
-            
-        
-
-        marker_81abc316a04d3dd56dd6d36471133f69.bindPopup(popup_64061f15ef8f4e50af424e1d7888dc79)
-        ;
-
-        
-    
-    
-            marker_81abc316a04d3dd56dd6d36471133f69.bindTooltip(
-                `<div>
-                     Кликните для информации
-                 </div>`,
-                {
-  "sticky": true,
-}
-            );
-        
-</script>
 </html>

@@ -5,6 +5,7 @@ from PySide6.QtGui import QFont
 import os
 import sys
 
+# Класс для основного приложения
 class TravelApp(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -57,10 +58,10 @@ class TravelApp(QMainWindow):
         layout.addWidget(self.reward_label)
 
     def update_map(self):
-        # Загружаем карту из файла map.html
+    # Убедитесь, что файл map.html существует
         map_path = os.path.join(os.getcwd(), "map.html")
         if os.path.exists(map_path):
-            self.map_view.setUrl(QUrl.fromLocalFile(map_path))
+            self.map_view.setUrl(QUrl.fromLocalFile(map_path))  # Загружаем локальный файл
         else:
             print(f"Файл {map_path} не найден!")
 
@@ -82,6 +83,7 @@ class TravelApp(QMainWindow):
             self.reward_label.setText("")
 
 if __name__ == "__main__":
+    # Запуск графического интерфейса
     app = QApplication(sys.argv)
     window = TravelApp()
     window.show()
