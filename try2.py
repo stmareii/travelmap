@@ -1,10 +1,9 @@
-from PySide6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QPushButton, QApplication,QLabel, QHBoxLayout
+from PySide6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QPushButton, QApplication, QLabel, QHBoxLayout
 from PySide6.QtWebEngineWidgets import QWebEngineView
 from PySide6.QtCore import QUrl
 from PySide6.QtGui import QFont
-import sys
-import folium
 import os
+import sys
 
 class TravelApp(QMainWindow):
     def __init__(self):
@@ -23,10 +22,10 @@ class TravelApp(QMainWindow):
         # Основной виджет
         main_widget = QWidget()
         self.setCentralWidget(main_widget)
-        layout =QVBoxLayout()
+        layout = QVBoxLayout()
         main_widget.setLayout(layout)
 
-        # Отображение карты (заглушка для простоты)
+        # Отображение карты из файла map.html
         self.map_view = QWebEngineView()
         self.update_map()
         layout.addWidget(self.map_view)
@@ -58,17 +57,13 @@ class TravelApp(QMainWindow):
         layout.addWidget(self.reward_label)
 
     def update_map(self):
-        # Создаём карту с помощью folium
-        map_object = folium.Map(location=[55.751244, 37.618423], zoom_start=10)  # Москва
-        folium.Marker([55.751244, 37.618423], popup="Москва", tooltip="Кликните для информации").add_to(map_object)
-        
-        # Сохраняем карту как HTML
+        # Загружаем карту из файла map.html
         map_path = os.path.join(os.getcwd(), "map.html")
-        map_object.save(map_path)
+        if os.path.exists(map_path):
+            self.map_view.setUrl(QUrl.fromLocalFile(map_path))
+        else:
+            print(f"Файл {map_path} не найден!")
 
-        # Загружаем карту в QWebEngineView
-        self.map_view.setUrl(QUrl.fromLocalFile(map_path))
-         
     def visit_place(self, place):
         # Отметить место как посещённое
         if place not in self.visited_places:
@@ -90,4 +85,4 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = TravelApp()
     window.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())
