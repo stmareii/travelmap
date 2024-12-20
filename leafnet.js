@@ -1,27 +1,53 @@
-// Создание карты с начальной точкой в Москве
-var map = L.map('map').setView([55.7558, 37.6173], 13); // Координаты Москвы и масштаб
+// leafnet.js
+document.addEventListener("DOMContentLoaded", function () {
+    // Initialize map
+    const map = L.map("map").setView([55.7558, 37.6173], 12);
 
-// Добавление базового слоя карты
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
+    // Add OpenStreetMap tiles
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "&copy; OpenStreetMap contributors",
+    }).addTo(map);
 
-// Добавление маркеров
-var marker1 = L.marker([55.7558, 37.6173]).addTo(map); // Маркер в Москве
-marker1.bindPopup("<b>Привет!</b><br>Это Москва.").openPopup();
+    // Define locations with coordinates and descriptions
+    const locations = [
+        { lat: 55.7558, lon: 37.6173, name: "Место 1" },
+        { lat: 55.5657, lon: 37.6515, name: "Место 2" },
+        { lat: 55.4657, lon: 37.5515, name: "Место 3" },
+        { lat: 55.6657, lon: 37.7515, name: "Место 4" },
+        { lat: 55.8657, lon: 37.9515, name: "Место 5" },
+    ];
 
-// Добавление других объектов, например, круг и многоугольник
-var circle = L.circle([55.758, 37.617], {
-    color: 'red',
-    fillColor: '#f03',
-    fillOpacity: 0.5,
-    radius: 500
-}).addTo(map);
-circle.bindPopup("Это круг.");
+    // Add markers to the map
+    locations.forEach(({ lat, lon, name }) => {
+        const marker = L.marker([lat, lon]).addTo(map);
+        marker.bindPopup(name);
 
-var polygon = L.polygon([
-    [55.759, 37.610],
-    [55.760, 37.620],
-    [55.755, 37.625]
-]).addTo(map);
-polygon.bindPopup("Это многоугольник.");
+        marker.on("click", function () {
+            handlePlaceVisit(name);
+        });
+    });
+
+    // Handle place visits and update progress
+    const visitedPlaces = new Set();
+    const totalPlaces = locations.length;
+    const progressLabel = document.getElementById("progress-label");
+    const rewardLabel = document.getElementById("reward-label");
+
+    function handlePlaceVisit(placeName) {
+        if (!visitedPlaces.has(placeName)) {
+            visitedPlaces.add(placeName);
+            updateProgress();
+        }
+    }
+
+    function updateProgress() {
+        const progress = (visitedPlaces.size / totalPlaces) * 100;
+        progressLabel.textContent = `Прогресс: ${progress.toFixed(0)}%`;
+
+        if (visitedPlaces.size >= 3) {
+            rewardLabel.textContent = "Награда получена: Значок исследователя!";
+        } else {
+            rewardLabel.textContent = "";
+        }
+    }
+});
