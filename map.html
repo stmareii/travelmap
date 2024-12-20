@@ -25,7 +25,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_e5d64cc1debf720ca660059f35ecd32d {
+                #map_f77f6b766b403b13aaa8c6a13cd04a48 {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -39,14 +39,14 @@
 <body>
     
     
-            <div class="folium-map" id="map_e5d64cc1debf720ca660059f35ecd32d" ></div>
+            <div class="folium-map" id="map_f77f6b766b403b13aaa8c6a13cd04a48" ></div>
         
 </body>
 <script>
     
     
-            var map_e5d64cc1debf720ca660059f35ecd32d = L.map(
-                "map_e5d64cc1debf720ca660059f35ecd32d",
+            var map_f77f6b766b403b13aaa8c6a13cd04a48 = L.map(
+                "map_f77f6b766b403b13aaa8c6a13cd04a48",
                 {
                     center: [55.7558, 37.6173],
                     crs: L.CRS.EPSG3857,
@@ -63,7 +63,7 @@
 
         
     
-            var tile_layer_d9e9bf40882bc50ddc39f44617c81321 = L.tileLayer(
+            var tile_layer_2fab6ee1f5c906532abd1073aadd6cae = L.tileLayer(
                 "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
                 {
   "minZoom": 0,
@@ -80,124 +80,184 @@
             );
         
     
-            tile_layer_d9e9bf40882bc50ddc39f44617c81321.addTo(map_e5d64cc1debf720ca660059f35ecd32d);
+            tile_layer_2fab6ee1f5c906532abd1073aadd6cae.addTo(map_f77f6b766b403b13aaa8c6a13cd04a48);
         
     
-            var marker_d05a69987eeb27f870287f6efbadb548 = L.marker(
-                [55.7558, 37.6173],
+            var marker_ec4cba77aa1d80820c82192b4ac92b5f = L.marker(
+                [55.75202, 37.61749],
                 {
 }
-            ).addTo(map_e5d64cc1debf720ca660059f35ecd32d);
+            ).addTo(map_f77f6b766b403b13aaa8c6a13cd04a48);
         
     
-        var popup_540e241673d84b0011f78aa56928c205 = L.popup({
+            var icon_86bb0fe83e01bdb6eb6a9f9f1def68e4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_ec4cba77aa1d80820c82192b4ac92b5f.setIcon(icon_86bb0fe83e01bdb6eb6a9f9f1def68e4);
+        
+    
+        var popup_438f901ae274a0a5712217b83a8e458a = L.popup({
   "maxWidth": "100%",
 });
 
         
             
-                var html_33a8155de91c09c862946fbd084de14c = $(`<div id="html_33a8155de91c09c862946fbd084de14c" style="width: 100.0%; height: 100.0%;">Место 1</div>`)[0];
-                popup_540e241673d84b0011f78aa56928c205.setContent(html_33a8155de91c09c862946fbd084de14c);
+                var html_e8c13bb8d1444161b96501f54f2c5ea0 = $(`<div id="html_e8c13bb8d1444161b96501f54f2c5ea0" style="width: 100.0%; height: 100.0%;">Московский Кремль</div>`)[0];
+                popup_438f901ae274a0a5712217b83a8e458a.setContent(html_e8c13bb8d1444161b96501f54f2c5ea0);
             
         
 
-        marker_d05a69987eeb27f870287f6efbadb548.bindPopup(popup_540e241673d84b0011f78aa56928c205)
+        marker_ec4cba77aa1d80820c82192b4ac92b5f.bindPopup(popup_438f901ae274a0a5712217b83a8e458a)
         ;
 
         
     
     
-            var marker_96acb91de718c368906345d7ec102ed8 = L.marker(
-                [55.5657, 37.6515],
+            var marker_c0894d93388b4117b38814b0d5835df9 = L.marker(
+                [55.75098, 37.61698],
                 {
 }
-            ).addTo(map_e5d64cc1debf720ca660059f35ecd32d);
+            ).addTo(map_f77f6b766b403b13aaa8c6a13cd04a48);
         
     
-        var popup_caac73839637fd7b41fe2168aa4f7950 = L.popup({
+            var icon_2a296800b30cf3c6827309c761326bfb = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_c0894d93388b4117b38814b0d5835df9.setIcon(icon_2a296800b30cf3c6827309c761326bfb);
+        
+    
+        var popup_89e793d126edadf3ec942fffa4ef2b8f = L.popup({
   "maxWidth": "100%",
 });
 
         
             
-                var html_7ae032bf71c6a0708eae4c62e6b3493a = $(`<div id="html_7ae032bf71c6a0708eae4c62e6b3493a" style="width: 100.0%; height: 100.0%;">Место 2</div>`)[0];
-                popup_caac73839637fd7b41fe2168aa4f7950.setContent(html_7ae032bf71c6a0708eae4c62e6b3493a);
+                var html_50d44cf8d34dda4f6bf8dc75dcc64a89 = $(`<div id="html_50d44cf8d34dda4f6bf8dc75dcc64a89" style="width: 100.0%; height: 100.0%;">Успенский собор</div>`)[0];
+                popup_89e793d126edadf3ec942fffa4ef2b8f.setContent(html_50d44cf8d34dda4f6bf8dc75dcc64a89);
             
         
 
-        marker_96acb91de718c368906345d7ec102ed8.bindPopup(popup_caac73839637fd7b41fe2168aa4f7950)
+        marker_c0894d93388b4117b38814b0d5835df9.bindPopup(popup_89e793d126edadf3ec942fffa4ef2b8f)
         ;
 
         
     
     
-            var marker_b196603cc916fa3d79380a9edea2b44c = L.marker(
-                [55.4657, 37.5515],
+            var marker_57e621ff38feba7639e88be45a83143a = L.marker(
+                [55.75076, 37.61849],
                 {
 }
-            ).addTo(map_e5d64cc1debf720ca660059f35ecd32d);
+            ).addTo(map_f77f6b766b403b13aaa8c6a13cd04a48);
         
     
-        var popup_c3355bc3053f604303a28996fc82d891 = L.popup({
+            var icon_f351b1e65173bf15fbbb115b536e1728 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_57e621ff38feba7639e88be45a83143a.setIcon(icon_f351b1e65173bf15fbbb115b536e1728);
+        
+    
+        var popup_9c2ad77e054e67eaff2fa37c3f3d5acb = L.popup({
   "maxWidth": "100%",
 });
 
         
             
-                var html_4f37f40fac168bd65bc5bd8788d59b14 = $(`<div id="html_4f37f40fac168bd65bc5bd8788d59b14" style="width: 100.0%; height: 100.0%;">Место 3</div>`)[0];
-                popup_c3355bc3053f604303a28996fc82d891.setContent(html_4f37f40fac168bd65bc5bd8788d59b14);
+                var html_7ea5a1bfedd681c18aded770badef82a = $(`<div id="html_7ea5a1bfedd681c18aded770badef82a" style="width: 100.0%; height: 100.0%;">Царь-колокол</div>`)[0];
+                popup_9c2ad77e054e67eaff2fa37c3f3d5acb.setContent(html_7ea5a1bfedd681c18aded770badef82a);
             
         
 
-        marker_b196603cc916fa3d79380a9edea2b44c.bindPopup(popup_c3355bc3053f604303a28996fc82d891)
+        marker_57e621ff38feba7639e88be45a83143a.bindPopup(popup_9c2ad77e054e67eaff2fa37c3f3d5acb)
         ;
 
         
     
     
-            var marker_d7ec90412026fefd835b70932d7e89f4 = L.marker(
-                [55.6657, 37.7515],
+            var marker_db1dff07dcab428776bc2a1126baeddd = L.marker(
+                [55.74968, 37.6136],
                 {
 }
-            ).addTo(map_e5d64cc1debf720ca660059f35ecd32d);
+            ).addTo(map_f77f6b766b403b13aaa8c6a13cd04a48);
         
     
-        var popup_d99c31d855fbf48de3edd06892338cf7 = L.popup({
+            var icon_81fd6972418a9b5f25fe06dc9cf3b208 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_db1dff07dcab428776bc2a1126baeddd.setIcon(icon_81fd6972418a9b5f25fe06dc9cf3b208);
+        
+    
+        var popup_e1aba5b8609428974216322bc24d4f69 = L.popup({
   "maxWidth": "100%",
 });
 
         
             
-                var html_956ad84d881feb28328b5ce7c876ecd9 = $(`<div id="html_956ad84d881feb28328b5ce7c876ecd9" style="width: 100.0%; height: 100.0%;">Место 4</div>`)[0];
-                popup_d99c31d855fbf48de3edd06892338cf7.setContent(html_956ad84d881feb28328b5ce7c876ecd9);
+                var html_0f56b80cfa206fa69b514dd4800c7382 = $(`<div id="html_0f56b80cfa206fa69b514dd4800c7382" style="width: 100.0%; height: 100.0%;">Оружейная палата и Алмазный фонд</div>`)[0];
+                popup_e1aba5b8609428974216322bc24d4f69.setContent(html_0f56b80cfa206fa69b514dd4800c7382);
             
         
 
-        marker_d7ec90412026fefd835b70932d7e89f4.bindPopup(popup_d99c31d855fbf48de3edd06892338cf7)
+        marker_db1dff07dcab428776bc2a1126baeddd.bindPopup(popup_e1aba5b8609428974216322bc24d4f69)
         ;
 
         
     
     
-            var marker_31121a4c42694ed6781bdaaeff23e4be = L.marker(
-                [55.8657, 37.9515],
+            var marker_38e16782698729785db966ad54550279 = L.marker(
+                [55.760178, 37.618575],
                 {
 }
-            ).addTo(map_e5d64cc1debf720ca660059f35ecd32d);
+            ).addTo(map_f77f6b766b403b13aaa8c6a13cd04a48);
         
     
-        var popup_5a093050b39e6cfcf28f79990a33e461 = L.popup({
+            var icon_d65f30424d2b3c1d4b360ca2107e0d5c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_38e16782698729785db966ad54550279.setIcon(icon_d65f30424d2b3c1d4b360ca2107e0d5c);
+        
+    
+        var popup_c4f5e5ef3d1d76c15592e9309ba58af7 = L.popup({
   "maxWidth": "100%",
 });
 
         
             
-                var html_1e99aba77aae3fe38de01ec2681e6745 = $(`<div id="html_1e99aba77aae3fe38de01ec2681e6745" style="width: 100.0%; height: 100.0%;">Место 5</div>`)[0];
-                popup_5a093050b39e6cfcf28f79990a33e461.setContent(html_1e99aba77aae3fe38de01ec2681e6745);
+                var html_9b95ab65177e41d7a9dcbc8e97040cf7 = $(`<div id="html_9b95ab65177e41d7a9dcbc8e97040cf7" style="width: 100.0%; height: 100.0%;">Большой театр</div>`)[0];
+                popup_c4f5e5ef3d1d76c15592e9309ba58af7.setContent(html_9b95ab65177e41d7a9dcbc8e97040cf7);
             
         
 
-        marker_31121a4c42694ed6781bdaaeff23e4be.bindPopup(popup_5a093050b39e6cfcf28f79990a33e461)
+        marker_38e16782698729785db966ad54550279.bindPopup(popup_c4f5e5ef3d1d76c15592e9309ba58af7)
         ;
 
         
