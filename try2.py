@@ -4,6 +4,7 @@ from PySide6.QtCore import QUrl
 from PySide6.QtGui import QFont
 import os
 import sys
+import folium
 
 # Класс для основного приложения
 class TravelApp(QMainWindow):
@@ -14,10 +15,13 @@ class TravelApp(QMainWindow):
         
         # Инициализация посещённых мест и прогресса
         self.visited_places = set()
-        self.total_places = 10  # Общее количество мест (пример)
+        self.total_places = 5  # Всего 5 точек на карте
         
         # Настройка интерфейса
         self.initUI()
+
+        # Генерация карты
+        self.generate_map()
 
     def initUI(self):
         # Основной виджет
@@ -39,7 +43,7 @@ class TravelApp(QMainWindow):
         # Кнопки для симуляции посещения мест
         button_layout = QHBoxLayout()
         self.place_buttons = []
-        for i in range(1, 6):  # Создаём 5 примерных мест
+        for i in range(1, 6):  # Создаём 5 мест
             button = QPushButton(f"Посетить место {i}")
             button.clicked.connect(lambda checked, place=i: self.visit_place(place))
             button_layout.addWidget(button)
@@ -57,13 +61,37 @@ class TravelApp(QMainWindow):
         self.reward_label.setStyleSheet("color: green;")
         layout.addWidget(self.reward_label)
 
+    def generate_map(self):
+        # Генерация карты с помощью folium
+        map_object = folium.Map(location=[51.1657, 10.4515], zoom_start=6)
+
+        # Добавление 5 маркеров на карту
+        locations = [
+            (51.1657, 10.4515, "Место 1"),
+            (51.5657, 10.6515, "Место 2"),
+            (51.2657, 10.2515, "Место 3"),
+            (51.4657, 10.8515, "Место 4"),
+            (51.0657, 10.0515, "Место 5"),
+        ]
+        for lat, lon, popup in locations:
+            folium.Marker([lat, lon], popup=popup).add_to(map_object)
+
+        # Сохранение карты
+        map_path = "map.html"
+        map_object.save(map_path)
+
+        # Проверка, что карта создана
+        if os.path.exists(map_path):
+            print(f"Карта успешно создана: {os.path.abspath(map_path)}")
+        else:
+            print("Ошибка: карта не создана!")
+
     def update_map(self):
-    # Убедитесь, что файл map.html существует
         map_path = os.path.join(os.getcwd(), "map.html")
         if os.path.exists(map_path):
-            self.map_view.setUrl(QUrl.fromLocalFile(map_path))  # Загружаем локальный файл
+            self.map_view.setUrl(QUrl.fromLocalFile(map_path))  # Загрузка карты
         else:
-            print(f"Файл {map_path} не найден!")
+            print(f"Ошибка: файл {map_path} не найден!")
 
     def visit_place(self, place):
         # Отметить место как посещённое
@@ -81,6 +109,7 @@ class TravelApp(QMainWindow):
             self.reward_label.setText("Награда получена: Значок исследователя!")
         else:
             self.reward_label.setText("")
+
 
 if __name__ == "__main__":
     # Запуск графического интерфейса

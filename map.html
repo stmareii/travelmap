@@ -1,76 +1,206 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Карта Leaflet</title>
-    <link rel="stylesheet" href="travelmap/leaflet.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
     
-    <!-- Подключение стилей и скриптов -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
-    <style>
-        html, body {
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-        #map {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            left: 0;
-        }
-    </style>
-</head>
-<body>
-    <!-- Контейнер для карты -->
-    <div id="map"></div>
-
-    <!-- Подключение скриптов -->
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
     <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
-
-    <script>
-        $(document).ready(function() {
-            // Создание карты
-            var map = L.map('map', {
-                center: [55.751244, 37.618423], // Координаты центра (Москва)
-                zoom: 10
-            });
-
-            // Добавление слоя OpenStreetMap
-            L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-                attribution: "&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors",
-                minZoom: 0,
-                maxZoom: 19
-            }).addTo(map);
-
-            // Массив с местами
-            var places = [
-                { name: "Москва", coords: [55.751244, 37.618423] },
-                { name: "Санкт-Петербург", coords: [59.9342802, 30.3350986] }
-            ];
-
-            // Добавление маркеров для каждого места
-            places.forEach(function(place) {
-                var marker = L.marker(place.coords).addTo(map);
-                marker.bindPopup("<b>" + place.name + "</b>").openPopup(); // Всплывающее окно
-                marker.bindTooltip("Кликните для информации", { sticky: true }); // Подсказка
-            });
-
-            // Обновление размеров карты при изменении окна
-            $(window).resize(function() {
-                map.invalidateSize();
-            });
-        });
-    </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_f076b9f731d95ef8cd4a23208ded21a8 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_f076b9f731d95ef8cd4a23208ded21a8" ></div>
+        
 </body>
+<script>
+    
+    
+            var map_f076b9f731d95ef8cd4a23208ded21a8 = L.map(
+                "map_f076b9f731d95ef8cd4a23208ded21a8",
+                {
+                    center: [51.1657, 10.4515],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 6,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_2d188436f0273528717d98c4d70f6b53 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_2d188436f0273528717d98c4d70f6b53.addTo(map_f076b9f731d95ef8cd4a23208ded21a8);
+        
+    
+            var marker_91ba4f211e1f4f2797ccb2356ee79378 = L.marker(
+                [51.1657, 10.4515],
+                {
+}
+            ).addTo(map_f076b9f731d95ef8cd4a23208ded21a8);
+        
+    
+        var popup_4cea97328ac9326ce04bfec4b8dbd2b1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7edf8f37200cfd97438dc8312398c48d = $(`<div id="html_7edf8f37200cfd97438dc8312398c48d" style="width: 100.0%; height: 100.0%;">Место 1</div>`)[0];
+                popup_4cea97328ac9326ce04bfec4b8dbd2b1.setContent(html_7edf8f37200cfd97438dc8312398c48d);
+            
+        
+
+        marker_91ba4f211e1f4f2797ccb2356ee79378.bindPopup(popup_4cea97328ac9326ce04bfec4b8dbd2b1)
+        ;
+
+        
+    
+    
+            var marker_c74098e6e059cb0e69f91d9a41eda3ca = L.marker(
+                [51.5657, 10.6515],
+                {
+}
+            ).addTo(map_f076b9f731d95ef8cd4a23208ded21a8);
+        
+    
+        var popup_24228a5a083a46bb9703a0f645137d4c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d00694b3c7b3060a9f9475d1d29a8839 = $(`<div id="html_d00694b3c7b3060a9f9475d1d29a8839" style="width: 100.0%; height: 100.0%;">Место 2</div>`)[0];
+                popup_24228a5a083a46bb9703a0f645137d4c.setContent(html_d00694b3c7b3060a9f9475d1d29a8839);
+            
+        
+
+        marker_c74098e6e059cb0e69f91d9a41eda3ca.bindPopup(popup_24228a5a083a46bb9703a0f645137d4c)
+        ;
+
+        
+    
+    
+            var marker_38c709491b5f5f87dfea0562eb7e817d = L.marker(
+                [51.2657, 10.2515],
+                {
+}
+            ).addTo(map_f076b9f731d95ef8cd4a23208ded21a8);
+        
+    
+        var popup_64e8871eb8d6bc75a5846946389a6a15 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7a6f74a00e437a2d20e6f25762547507 = $(`<div id="html_7a6f74a00e437a2d20e6f25762547507" style="width: 100.0%; height: 100.0%;">Место 3</div>`)[0];
+                popup_64e8871eb8d6bc75a5846946389a6a15.setContent(html_7a6f74a00e437a2d20e6f25762547507);
+            
+        
+
+        marker_38c709491b5f5f87dfea0562eb7e817d.bindPopup(popup_64e8871eb8d6bc75a5846946389a6a15)
+        ;
+
+        
+    
+    
+            var marker_7f747d97ba1c55d026409ed68a81ee99 = L.marker(
+                [51.4657, 10.8515],
+                {
+}
+            ).addTo(map_f076b9f731d95ef8cd4a23208ded21a8);
+        
+    
+        var popup_c8168d7d261e18268451aad1b21bad15 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_df2a2261a465caaf0a1d471cdc8eaaf4 = $(`<div id="html_df2a2261a465caaf0a1d471cdc8eaaf4" style="width: 100.0%; height: 100.0%;">Место 4</div>`)[0];
+                popup_c8168d7d261e18268451aad1b21bad15.setContent(html_df2a2261a465caaf0a1d471cdc8eaaf4);
+            
+        
+
+        marker_7f747d97ba1c55d026409ed68a81ee99.bindPopup(popup_c8168d7d261e18268451aad1b21bad15)
+        ;
+
+        
+    
+    
+            var marker_eb63570e8dc12810870e53f4a4bf5a73 = L.marker(
+                [51.0657, 10.0515],
+                {
+}
+            ).addTo(map_f076b9f731d95ef8cd4a23208ded21a8);
+        
+    
+        var popup_2b97bd353b4cd21a1caa151b64c608ff = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7a14eb8023919693c2dd61c44cc0176a = $(`<div id="html_7a14eb8023919693c2dd61c44cc0176a" style="width: 100.0%; height: 100.0%;">Место 5</div>`)[0];
+                popup_2b97bd353b4cd21a1caa151b64c608ff.setContent(html_7a14eb8023919693c2dd61c44cc0176a);
+            
+        
+
+        marker_eb63570e8dc12810870e53f4a4bf5a73.bindPopup(popup_2b97bd353b4cd21a1caa151b64c608ff)
+        ;
+
+        
+    
+</script>
 </html>
