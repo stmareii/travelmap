@@ -87,17 +87,17 @@ class TravelApp(QMainWindow):
             print("Ошибка: карта не создана!")
 
     def update_map(self):
-        map_path = os.path.join(os.getcwd(), "map.html")
-        if os.path.exists(map_path):
-            self.map_view.setUrl(QUrl.fromLocalFile(map_path))  # Загрузка карты
-        else:
-            print(f"Ошибка: файл {map_path} не найден!")
+     map_path = os.path.join(os.getcwd(), "map.html")
+     if os.path.exists(map_path):
+         self.map_view.setUrl(QUrl.fromLocalFile(map_path))  # Загружаем карту в QWebEngineView
+     else:
+         print(f"Ошибка: файл {map_path} не найден!")
 
     def visit_place(self, place):
-        # Отметить место как посещённое
-        if place not in self.visited_places:
-            self.visited_places.add(place)
-            self.update_progress()
+     # Отметить место как посещённое, если оно ещё не посещено
+     if place not in self.visited_places:
+         self.visited_places.add(place)
+         self.update_progress()
 
     def update_progress(self):
         # Обновление прогресса
@@ -110,6 +110,16 @@ class TravelApp(QMainWindow):
         else:
             self.reward_label.setText("")
 
+    def update_progress(self):
+     # Обновление прогресса
+     progress = len(self.visited_places) / self.total_places * 100
+     self.progress_label.setText(f"Прогресс: {progress:.0f}%")
+     
+     # Проверка выполнения челленджа
+     if len(self.visited_places) >= 3:
+         self.reward_label.setText("Награда получена: Значок исследователя!")
+     else:
+         self.reward_label.setText("")
 
 if __name__ == "__main__":
     # Запуск графического интерфейса
