@@ -1,17 +1,17 @@
-// Инициализация карты и установка начальной точки и масштаба
-var map = L.map('map').setView([51.505, -0.09], 13);
+// Создание карты с начальной точкой в Москве
+var map = L.map('map').setView([55.7558, 37.6173], 13); // Координаты Москвы и масштаб
 
-// Добавление базового слоя карты (например, OpenStreetMap)
+// Добавление базового слоя карты
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
-// Добавление маркера
-var marker = L.marker([51.505, -0.09]).addTo(map);
-marker.bindPopup("<b>Привет!</b><br>Это Лондон.").openPopup();
+// Добавление маркеров
+var marker1 = L.marker([55.7558, 37.6173]).addTo(map); // Маркер в Москве
+marker1.bindPopup("<b>Привет!</b><br>Это Москва.").openPopup();
 
-// Добавление круга
-var circle = L.circle([51.508, -0.11], {
+// Добавление других объектов, например, круг и многоугольник
+var circle = L.circle([55.758, 37.617], {
     color: 'red',
     fillColor: '#f03',
     fillOpacity: 0.5,
@@ -19,18 +19,9 @@ var circle = L.circle([51.508, -0.11], {
 }).addTo(map);
 circle.bindPopup("Это круг.");
 
-// Добавление многоугольника
 var polygon = L.polygon([
-    [51.509, -0.08],
-    [51.503, -0.06],
-    [51.51, -0.047]
+    [55.759, 37.610],
+    [55.760, 37.620],
+    [55.755, 37.625]
 ]).addTo(map);
 polygon.bindPopup("Это многоугольник.");
-
-// Добавление всплывающей подсказки при клике на карту
-map.on('click', function(e) {
-    L.popup()
-        .setLatLng(e.latlng)
-        .setContent("Вы кликнули в точке " + e.latlng.toString())
-        .openOn(map);
-});

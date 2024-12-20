@@ -32,6 +32,7 @@ class TravelApp(QMainWindow):
 
         # Отображение карты из файла map.html
         self.map_view = QWebEngineView()
+        self.map_view.loadFinished.connect(self.on_map_loaded)  # Обработчик завершения загрузки
         self.update_map()
         layout.addWidget(self.map_view)
 
@@ -62,23 +63,30 @@ class TravelApp(QMainWindow):
         layout.addWidget(self.reward_label)
 
     def generate_map(self):
-        # Генерация карты с помощью folium
-        map_object = folium.Map(location=[51.1657, 10.4515], zoom_start=6)
+    # Генерация карты с помощью folium (с изменением начальной точки на Москву)
+        map_object = folium.Map(location=[55.7558, 37.6173], zoom_start=12)  # Центр в Москве
 
         # Добавление 5 маркеров на карту
         locations = [
-            (51.1657, 10.4515, "Место 1"),
-            (51.5657, 10.6515, "Место 2"),
-            (51.2657, 10.2515, "Место 3"),
-            (51.4657, 10.8515, "Место 4"),
-            (51.0657, 10.0515, "Место 5"),
+            (55.7558, 37.6173, "Место 1"),  # Москва
+            (55.5657, 37.6515, "Место 2"),
+            (55.4657, 37.5515, "Место 3"),
+            (55.6657, 37.7515, "Место 4"),
+            (55.8657, 37.9515, "Место 5"),
         ]
         for lat, lon, popup in locations:
             folium.Marker([lat, lon], popup=popup).add_to(map_object)
 
+        # Добавление CDN для библиотеки Leaflet, если необходимо
+        map_html = map_object.get_root().render()
+        map_html = map_html.replace('<head>', '''<head>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>''')
+
         # Сохранение карты
         map_path = "map.html"
-        map_object.save(map_path)
+        with open(map_path, 'w', encoding='utf-8') as f:
+            f.write(map_html)
 
         # Проверка, что карта создана
         if os.path.exists(map_path):
@@ -87,39 +95,33 @@ class TravelApp(QMainWindow):
             print("Ошибка: карта не создана!")
 
     def update_map(self):
-     map_path = os.path.join(os.getcwd(), "map.html")
-     if os.path.exists(map_path):
-         self.map_view.setUrl(QUrl.fromLocalFile(map_path))  # Загружаем карту в QWebEngineView
-     else:
-         print(f"Ошибка: файл {map_path} не найден!")
+        # Обновление карты
+        map_path = os.path.join(os.getcwd(), "map.html")
+        if os.path.exists(map_path):
+            self.map_view.setUrl(QUrl.fromLocalFile(map_path))  # Загрузка карты
+        else:
+            print(f"Ошибка: файл {map_path} не найден!")
+
+    def on_map_loaded(self):
+        # Обработчик загрузки карты, можно обновить интерфейс или сделать другие действия
+        print("Карта успешно загружена!")
 
     def visit_place(self, place):
-     # Отметить место как посещённое, если оно ещё не посещено
-     if place not in self.visited_places:
-         self.visited_places.add(place)
-         self.update_progress()
+        # Отметить место как посещённое, если оно ещё не посещено
+        if place not in self.visited_places:
+            self.visited_places.add(place)
+            self.update_progress()
 
     def update_progress(self):
         # Обновление прогресса
         progress = len(self.visited_places) / self.total_places * 100
         self.progress_label.setText(f"Прогресс: {progress:.0f}%")
-
+        
         # Проверка выполнения челленджа
         if len(self.visited_places) >= 3:
             self.reward_label.setText("Награда получена: Значок исследователя!")
         else:
             self.reward_label.setText("")
-
-    def update_progress(self):
-     # Обновление прогресса
-     progress = len(self.visited_places) / self.total_places * 100
-     self.progress_label.setText(f"Прогресс: {progress:.0f}%")
-     
-     # Проверка выполнения челленджа
-     if len(self.visited_places) >= 3:
-         self.reward_label.setText("Награда получена: Значок исследователя!")
-     else:
-         self.reward_label.setText("")
 
 if __name__ == "__main__":
     # Запуск графического интерфейса

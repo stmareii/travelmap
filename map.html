@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
@@ -25,7 +27,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_bb4aed624ab798126cf9f31f5b0e0640 {
+                #map_cbf364239901e7d872aafb7811c77c5a {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -39,19 +41,19 @@
 <body>
     
     
-            <div class="folium-map" id="map_bb4aed624ab798126cf9f31f5b0e0640" ></div>
+            <div class="folium-map" id="map_cbf364239901e7d872aafb7811c77c5a" ></div>
         
 </body>
 <script>
     
     
-            var map_bb4aed624ab798126cf9f31f5b0e0640 = L.map(
-                "map_bb4aed624ab798126cf9f31f5b0e0640",
+            var map_cbf364239901e7d872aafb7811c77c5a = L.map(
+                "map_cbf364239901e7d872aafb7811c77c5a",
                 {
-                    center: [51.1657, 10.4515],
+                    center: [55.7558, 37.6173],
                     crs: L.CRS.EPSG3857,
                     ...{
-  "zoom": 6,
+  "zoom": 12,
   "zoomControl": true,
   "preferCanvas": false,
 }
@@ -63,7 +65,7 @@
 
         
     
-            var tile_layer_4ff8806e23349cf97db819667eeabb6f = L.tileLayer(
+            var tile_layer_b5b00b51451aeb311ccd48e55eb7a67a = L.tileLayer(
                 "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
                 {
   "minZoom": 0,
@@ -80,124 +82,124 @@
             );
         
     
-            tile_layer_4ff8806e23349cf97db819667eeabb6f.addTo(map_bb4aed624ab798126cf9f31f5b0e0640);
+            tile_layer_b5b00b51451aeb311ccd48e55eb7a67a.addTo(map_cbf364239901e7d872aafb7811c77c5a);
         
     
-            var marker_fbe9f1071290021e1244b68ce7d1ee1b = L.marker(
-                [51.1657, 10.4515],
+            var marker_302aa860b89ad7ef5bb76774b3745f4f = L.marker(
+                [55.7558, 37.6173],
                 {
 }
-            ).addTo(map_bb4aed624ab798126cf9f31f5b0e0640);
+            ).addTo(map_cbf364239901e7d872aafb7811c77c5a);
         
     
-        var popup_9597086d4c2f5687d5c2685e34e5dcbd = L.popup({
+        var popup_195a9f4a2fc8af48cbe337200dc414da = L.popup({
   "maxWidth": "100%",
 });
 
         
             
-                var html_0c6799d5c85af5002e0be991fba0c030 = $(`<div id="html_0c6799d5c85af5002e0be991fba0c030" style="width: 100.0%; height: 100.0%;">Место 1</div>`)[0];
-                popup_9597086d4c2f5687d5c2685e34e5dcbd.setContent(html_0c6799d5c85af5002e0be991fba0c030);
+                var html_e72b9d7fdc2dcb62307b00d6600b8e08 = $(`<div id="html_e72b9d7fdc2dcb62307b00d6600b8e08" style="width: 100.0%; height: 100.0%;">Место 1</div>`)[0];
+                popup_195a9f4a2fc8af48cbe337200dc414da.setContent(html_e72b9d7fdc2dcb62307b00d6600b8e08);
             
         
 
-        marker_fbe9f1071290021e1244b68ce7d1ee1b.bindPopup(popup_9597086d4c2f5687d5c2685e34e5dcbd)
+        marker_302aa860b89ad7ef5bb76774b3745f4f.bindPopup(popup_195a9f4a2fc8af48cbe337200dc414da)
         ;
 
         
     
     
-            var marker_f437d0d5b11d8a7c3ecd2e45bb608ccc = L.marker(
-                [51.5657, 10.6515],
+            var marker_f1176704a50262938ad5c01b60b5cbed = L.marker(
+                [55.5657, 37.6515],
                 {
 }
-            ).addTo(map_bb4aed624ab798126cf9f31f5b0e0640);
+            ).addTo(map_cbf364239901e7d872aafb7811c77c5a);
         
     
-        var popup_dfd1b07c4fd7ef780b7b5411c343992d = L.popup({
+        var popup_f9aa64c4b5920a143c5279b00ee6b0f1 = L.popup({
   "maxWidth": "100%",
 });
 
         
             
-                var html_28825c77dcbf298e1b986a9f2733393c = $(`<div id="html_28825c77dcbf298e1b986a9f2733393c" style="width: 100.0%; height: 100.0%;">Место 2</div>`)[0];
-                popup_dfd1b07c4fd7ef780b7b5411c343992d.setContent(html_28825c77dcbf298e1b986a9f2733393c);
+                var html_ac46e5c3f3cd755e46e37b023b176e86 = $(`<div id="html_ac46e5c3f3cd755e46e37b023b176e86" style="width: 100.0%; height: 100.0%;">Место 2</div>`)[0];
+                popup_f9aa64c4b5920a143c5279b00ee6b0f1.setContent(html_ac46e5c3f3cd755e46e37b023b176e86);
             
         
 
-        marker_f437d0d5b11d8a7c3ecd2e45bb608ccc.bindPopup(popup_dfd1b07c4fd7ef780b7b5411c343992d)
+        marker_f1176704a50262938ad5c01b60b5cbed.bindPopup(popup_f9aa64c4b5920a143c5279b00ee6b0f1)
         ;
 
         
     
     
-            var marker_2ee5a69d8fd86b0a9536395c804716b5 = L.marker(
-                [51.2657, 10.2515],
+            var marker_001d65eca809ee58943fcda1a95fef2e = L.marker(
+                [55.4657, 37.5515],
                 {
 }
-            ).addTo(map_bb4aed624ab798126cf9f31f5b0e0640);
+            ).addTo(map_cbf364239901e7d872aafb7811c77c5a);
         
     
-        var popup_641c97df35cc5129ef84ed4e00786af3 = L.popup({
+        var popup_6ab81e6c9f50d2f9bd2b3c01fa7a99a8 = L.popup({
   "maxWidth": "100%",
 });
 
         
             
-                var html_c51f8605eec34d37783a2df25cd363a0 = $(`<div id="html_c51f8605eec34d37783a2df25cd363a0" style="width: 100.0%; height: 100.0%;">Место 3</div>`)[0];
-                popup_641c97df35cc5129ef84ed4e00786af3.setContent(html_c51f8605eec34d37783a2df25cd363a0);
+                var html_626523ef4b831c1ddf122c3fecbd907d = $(`<div id="html_626523ef4b831c1ddf122c3fecbd907d" style="width: 100.0%; height: 100.0%;">Место 3</div>`)[0];
+                popup_6ab81e6c9f50d2f9bd2b3c01fa7a99a8.setContent(html_626523ef4b831c1ddf122c3fecbd907d);
             
         
 
-        marker_2ee5a69d8fd86b0a9536395c804716b5.bindPopup(popup_641c97df35cc5129ef84ed4e00786af3)
+        marker_001d65eca809ee58943fcda1a95fef2e.bindPopup(popup_6ab81e6c9f50d2f9bd2b3c01fa7a99a8)
         ;
 
         
     
     
-            var marker_a6a231b12000d840863275684a024e3e = L.marker(
-                [51.4657, 10.8515],
+            var marker_a4f419e77f87c891e6596c102edbeae2 = L.marker(
+                [55.6657, 37.7515],
                 {
 }
-            ).addTo(map_bb4aed624ab798126cf9f31f5b0e0640);
+            ).addTo(map_cbf364239901e7d872aafb7811c77c5a);
         
     
-        var popup_d63dbd85364b90277d93e60d45dc5226 = L.popup({
+        var popup_05ec9dafeb79444a8458d5e9bffa75ca = L.popup({
   "maxWidth": "100%",
 });
 
         
             
-                var html_15c0f3f37a7c9fde3d2763e9bccd3216 = $(`<div id="html_15c0f3f37a7c9fde3d2763e9bccd3216" style="width: 100.0%; height: 100.0%;">Место 4</div>`)[0];
-                popup_d63dbd85364b90277d93e60d45dc5226.setContent(html_15c0f3f37a7c9fde3d2763e9bccd3216);
+                var html_b24e1446251f893c440802364162633f = $(`<div id="html_b24e1446251f893c440802364162633f" style="width: 100.0%; height: 100.0%;">Место 4</div>`)[0];
+                popup_05ec9dafeb79444a8458d5e9bffa75ca.setContent(html_b24e1446251f893c440802364162633f);
             
         
 
-        marker_a6a231b12000d840863275684a024e3e.bindPopup(popup_d63dbd85364b90277d93e60d45dc5226)
+        marker_a4f419e77f87c891e6596c102edbeae2.bindPopup(popup_05ec9dafeb79444a8458d5e9bffa75ca)
         ;
 
         
     
     
-            var marker_4ee62d5717c6b6bcb7cd166fbd350984 = L.marker(
-                [51.0657, 10.0515],
+            var marker_bb582189617bd8ce6a7d7619074e6c70 = L.marker(
+                [55.8657, 37.9515],
                 {
 }
-            ).addTo(map_bb4aed624ab798126cf9f31f5b0e0640);
+            ).addTo(map_cbf364239901e7d872aafb7811c77c5a);
         
     
-        var popup_b3dcd65582cef52257a910b66b462b0f = L.popup({
+        var popup_be2d7e01f14bb75ddbae6e3bf29c22a3 = L.popup({
   "maxWidth": "100%",
 });
 
         
             
-                var html_8e2458a5814df65233dbdcecb320223d = $(`<div id="html_8e2458a5814df65233dbdcecb320223d" style="width: 100.0%; height: 100.0%;">Место 5</div>`)[0];
-                popup_b3dcd65582cef52257a910b66b462b0f.setContent(html_8e2458a5814df65233dbdcecb320223d);
+                var html_99db37d73802251ae5213c00d91c808a = $(`<div id="html_99db37d73802251ae5213c00d91c808a" style="width: 100.0%; height: 100.0%;">Место 5</div>`)[0];
+                popup_be2d7e01f14bb75ddbae6e3bf29c22a3.setContent(html_99db37d73802251ae5213c00d91c808a);
             
         
 
-        marker_4ee62d5717c6b6bcb7cd166fbd350984.bindPopup(popup_b3dcd65582cef52257a910b66b462b0f)
+        marker_bb582189617bd8ce6a7d7619074e6c70.bindPopup(popup_be2d7e01f14bb75ddbae6e3bf29c22a3)
         ;
 
         
