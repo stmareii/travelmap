@@ -33,6 +33,8 @@ class TravelApp(QMainWindow):
         self.generate_map()
         self.initUI()
         self.start_server()
+        
+        
 
     def initUI(self):
         main_widget = QWidget()
@@ -164,6 +166,55 @@ class TravelApp(QMainWindow):
             achievements = self.get_achievements(data['visited'])
             achievement_label = QLabel(f"Достижения: {', '.join(achievements) if achievements else 'Нет'}")
             scroll_layout.addRow(achievement_label)
+        # Вкладка с достижениями
+        achievements_tab = QWidget()
+        achievements_layout = QVBoxLayout()
+        achievements_tab.setLayout(achievements_layout)
+        self.tabs.addTab(achievements_tab, "Достижения")
+
+        # Инициализация прокручиваемой области для достижений
+        self.achievements_scroll_area = QScrollArea()  # Инициализация прокручиваемой области
+        achievements_scroll_widget = QWidget()
+        achievements_scroll_layout = QFormLayout()
+        achievements_scroll_widget.setLayout(achievements_scroll_layout)
+        self.achievements_scroll_area.setWidget(achievements_scroll_widget)
+        self.achievements_scroll_area.setWidgetResizable(True)
+        achievements_layout.addWidget(self.achievements_scroll_area)
+
+        # Добавление достижений
+        self.achievements_data = [
+            {"title": "Первопроходец", "threshold": 5, "icon": "achievement_5.png"},
+            {"title": "Исследователь", "threshold": 10, "icon": "achievement_10.png"},
+            {"title": "Гурман", "threshold": 15, "icon": "achievement_15.png"},
+            {"title": "Совершенный путник", "threshold": self.total_places, "icon": "achievement_all.png"},
+        ]
+
+        for achievement in self.achievements_data:
+            achievement_layout = QHBoxLayout()
+
+            # Иконка достижения
+            achievement_icon = QLabel()
+            achievement_icon.setPixmap(QPixmap(achievement["icon"]).scaled(50, 50))  # Сюда подставьте реальный путь
+            achievement_layout.addWidget(achievement_icon)
+
+            # Текст достижения
+            achievement_label = QLabel(achievement["title"])
+            achievement_layout.addWidget(achievement_label)
+
+            # Прогресс достижения
+            progress_label = QLabel()
+            progress_label.setText(f"Пройдено {len(self.visited_places)}/{achievement['threshold']} мест")
+            achievement_layout.addWidget(progress_label)
+
+            # Подсветка неактивных достижений
+            if len(self.visited_places) < achievement["threshold"]:
+                achievement_label.setStyleSheet("color: gray;")  # Серый цвет для неактивных достижений
+                progress_label.setStyleSheet("color: gray;")
+            else:
+                achievement_label.setStyleSheet("color: green;")  # Зеленый цвет для активных достижений
+                progress_label.setStyleSheet("color: green;")
+
+            achievements_scroll_layout.addRow(achievement_layout)
 
     def show_visited_places(self, friend):
         """Отображает места, посещенные другом."""
@@ -195,6 +246,83 @@ class TravelApp(QMainWindow):
         if len(visited_places) == self.total_places:
             achievements.append("Совершенный путник: Посетите все места!")
         return achievements
+
+    def visit_place(self, place):
+        if place not in self.visited_places:
+            self.visited_places.add(place)  # Добавляем место в список посещенных
+            self.update_progress()  # Обновляем прогресс достижений
+            self.update_map_with_progress()  # Обновляем карту
+            self.update_achievements_display()  # Обновляем вкладку достижений
+    
+    def update_progress(self):
+        progress = len(self.visited_places) / self.total_places * 100
+        self.progress_label.setText(f"Прогресс: {progress:.0f}%")
+        self.progress_bar.setValue(progress)
+
+        # Обновляем достижения в вкладке
+        for achievement in self.achievements_data:
+            if len(self.visited_places) >= achievement["threshold"]:
+                # Если достижение выполнено, подсвечиваем как активное
+                achievement["status"] = "active"
+            else:
+                # Если достижение не выполнено, подсвечиваем как неактивное
+                achievement["status"] = "inactive"
+
+    def update_achievements_tab(self):
+        print("Обновление вкладки с достижениями...")
+
+        # Очистим старое содержимое
+        achievements_widget = self.achievements_scroll_area.widget()
+        print("Очистка старого layout...")
+        achievements_widget.layout().clear()
+
+        # Создаем новый layout для достижений
+        achievements_scroll_layout = QFormLayout()
+        
+        # Перебираем достижения и добавляем их в новый layout
+        for idx, achievement in enumerate(self.achievements_data):
+            print(f"Добавление достижения: {achievement['title']}")
+            achievement_layout = QHBoxLayout()
+
+            # Иконка достижения
+            achievement_icon = QLabel()
+            achievement_icon.setPixmap(QPixmap(achievement["icon"]).scaled(50, 50))
+            achievement_layout.addWidget(achievement_icon)
+
+            # Название достижения
+            achievement_label = QLabel(achievement["title"])
+            achievement_layout.addWidget(achievement_label)
+
+            # Прогресс достижения
+            progress_label = QLabel(f"Пройдено {len(self.visited_places)}/{achievement['threshold']} мест")
+            achievement_layout.addWidget(progress_label)
+
+            # Подсветка достижения в зависимости от выполненности
+            if len(self.visited_places) >= achievement["threshold"]:
+                achievement_label.setStyleSheet("color: green;")
+                progress_label.setStyleSheet("color: green;")
+                progress_label.setText("Достижение выполнено!")
+            else:
+                achievement_label.setStyleSheet("color: gray;")
+                progress_label.setStyleSheet("color: gray;")
+                progress_label.setText(f"Пройдено {len(self.visited_places)}/{achievement['threshold']} мест")
+
+            # Добавляем в layout
+            achievements_scroll_layout.addRow(achievement_layout)
+
+        # Обновляем layout на вкладке достижений
+        print("Установка нового layout на вкладке достижений...")
+        achievements_widget.setLayout(achievements_scroll_layout)
+
+        # Перерисовываем прокручиваемую область
+        print("Перерисовка прокручиваемой области...")
+        self.achievements_scroll_area.repaint()
+
+
+    def update_achievements_display(self):
+        self.update_achievements_tab()  # Обновить данные достижений
+        self.achievements_scroll_area.repaint()  # Перерисовать прокручиваемую область
+
 
     def generate_map(self):
         # Генерация карты с местами
@@ -248,11 +376,13 @@ class TravelApp(QMainWindow):
     def visit_place(self, place):
         if place not in self.visited_places:
             self.visited_places.add(place)  # Добавляем место в список посещенных
+            print(f"Место добавлено: {place}. Обновление достижений...")            #!!
             place_info = self.locations[place - 1]  # Получаем информацию о месте
             name, rating, description = place_info[2], place_info[3], place_info[4]
             self.show_place_info(name, rating, description)
             self.update_progress()  # Обновляем прогресс
             self.update_map_with_progress()  # Обновляем карту с посещенными местами
+            self.update_achievements_tab()  # Обновляем вкладку достижений          #!!
 
     def show_place_info(self, name, rating, description):
         info_message = f"<b>{name}</b><br>Рейтинг: {rating}/5<br>{description}"
@@ -556,6 +686,9 @@ class TravelApp(QMainWindow):
         self.server_thread = threading.Thread(target=run_server)
         self.server_thread.daemon = True
         self.server_thread.start()
+
+
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
