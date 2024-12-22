@@ -42,6 +42,21 @@ class TravelApp(QMainWindow):
 
         # Виджет для вкладок
         self.tabs = QTabWidget()
+        self.tabs.setStyleSheet("""
+            QTabWidget::pane {
+                border: none;
+            }
+            QTabBar::tab {
+                background-color: #87CEFA;
+                padding: 10px;
+                margin: 2px;
+                border-radius: 5px;
+            }
+            QTabBar::tab:selected {
+                background-color: #5ab0cd;
+                font-weight: bold;
+            }
+        """)
         layout.addWidget(self.tabs)
 
         # Вкладка карты
@@ -159,7 +174,6 @@ class TravelApp(QMainWindow):
             place_info = self.locations[place - 1]
             places_info.append(f"{place_info[2]} (Рейтинг: {place_info[3]}/5): {place_info[4]}")
 
-        # Показываем информацию о посещенных местах
         places_text = "\n".join(places_info) if places_info else "Нет посещенных мест."
         self.show_message(f"{friend} посетил следующие места:\n{places_text}")
 
@@ -330,9 +344,29 @@ class TravelApp(QMainWindow):
                 QPushButton {
                     background-color: #444444;
                     color: #ffffff;
+                    border-radius: 5px;
+                    padding: 10px;
+                    font-size: 14px;
+                }
+                QPushButton:hover {
+                    background-color: #616161;
                 }
                 QLabel {
                     color: #ffffff;
+                    font-size: 14px;
+                }
+                QComboBox {
+                    background-color: #444444;
+                    color: #ffffff;
+                    border-radius: 5px;
+                    padding: 5px;
+                }
+                QProgressBar {
+                    background-color: #444444;
+                    border-radius: 5px;
+                }
+                QProgressBar::chunk {
+                    background-color: #42f554;
                 }
             """)
         else:
@@ -344,9 +378,29 @@ class TravelApp(QMainWindow):
                 QPushButton {
                     background-color: #87CEFA;
                     color: #000000;
+                    border-radius: 5px;
+                    padding: 10px;
+                    font-size: 14px;
+                }
+                QPushButton:hover {
+                    background-color: #5ab0cd;
                 }
                 QLabel {
                     color: #000000;
+                    font-size: 14px;
+                }
+                QComboBox {
+                    background-color: #f5f5f5;
+                    color: #000000;
+                    border-radius: 5px;
+                    padding: 5px;
+                }
+                QProgressBar {
+                    background-color: #d3d3d3;
+                    border-radius: 5px;
+                }
+                QProgressBar::chunk {
+                    background-color: #42f554;
                 }
             """)
 
