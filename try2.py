@@ -30,8 +30,8 @@ class TravelApp(QMainWindow):
             "ЯКурица": {"visited": {1, 5, 9, 13, 15, 16, 2, 3, 4 , 6, 7, 8, 10, 11, 12, 14, 17, 18, 19, 20}, "achievements": []},
         }
 
-        self.initUI()
         self.generate_map()
+        self.initUI()
         self.start_server()
 
     def initUI(self):
@@ -83,8 +83,8 @@ class TravelApp(QMainWindow):
 
         # Комбинированный бокс для выбора мест
         self.place_selector = QComboBox()
-        for i in range(1, self.total_places + 1):
-            self.place_selector.addItem(f"Посетить место {i}")
+        for index, (_, _, name, _, _) in enumerate(self.locations, start=1):
+            self.place_selector.addItem(f"Посетить {name}")
         self.place_selector.currentIndexChanged.connect(self.visit_selected_place)
         map_layout.addWidget(self.place_selector)
 
@@ -360,13 +360,83 @@ class TravelApp(QMainWindow):
                     color: #ffffff;
                     border-radius: 5px;
                     padding: 5px;
+                    font-size: 14px;
+                }
+                QComboBox QAbstractItemView {
+                    background-color: #444444;
+                    color: #ffffff;
                 }
                 QProgressBar {
                     background-color: #444444;
-                    border-radius: 5px;
+                    border-radius: 10px;
+                    height: 20px;
                 }
                 QProgressBar::chunk {
                     background-color: #42f554;
+                    border-radius: 10px;
+                }
+                QProgressBar::horizontal {
+                    border-radius: 10px;
+                }
+                
+                /* Стиль для вкладки Друзья */
+                QTabWidget::pane {
+                    background-color: #2b2b2b;
+                    border: none;
+                }
+                
+                QTabBar {
+                    background-color: #444444;
+                    border: 1px solid #666666;
+                    padding: 10px;
+                }
+                
+                QTabBar::tab {
+                    background-color: #444444;
+                    color: #ffffff;
+                    padding: 8px;
+                    border-radius: 5px;
+                }
+                
+                QTabBar::tab:selected {
+                    background-color: #616161;
+                }
+                
+                QTabBar::tab:hover {
+                    background-color: #616161;
+                }
+
+                /* Список друзей */
+                QListView {
+                    background-color: #333333;
+                    border-radius: 5px;
+                    color: #ffffff;
+                }
+                
+                QListView::item {
+                    background-color: #444444;
+                    padding: 8px;
+                    border-radius: 5px;
+                }
+                
+                QListView::item:selected {
+                    background-color: #616161;
+                }
+                
+                /* Ввод данных */
+                QLineEdit {
+                    background-color: #444444;
+                    color: #ffffff;
+                    border-radius: 5px;
+                    padding: 8px;
+                }
+                QLineEdit:focus {
+                    border: 1px solid #42f554;
+                }
+
+                /* Если есть другие элементы в панели друзей */
+                QWidget {
+                    background-color: #2b2b2b;
                 }
             """)
         else:
@@ -390,19 +460,91 @@ class TravelApp(QMainWindow):
                     font-size: 14px;
                 }
                 QComboBox {
-                    background-color: #f5f5f5;
+                    background-color: #ffffff;
                     color: #000000;
                     border-radius: 5px;
                     padding: 5px;
+                    font-size: 14px;
+                }
+                QComboBox QAbstractItemView {
+                    background-color: #ffffff;
+                    color: #000000;
                 }
                 QProgressBar {
                     background-color: #d3d3d3;
-                    border-radius: 5px;
+                    border-radius: 10px;
+                    height: 20px;
                 }
                 QProgressBar::chunk {
                     background-color: #42f554;
+                    border-radius: 10px;
+                }
+                QProgressBar::horizontal {
+                    border-radius: 10px;
+                }
+                
+                /* Стиль для вкладки Друзья */
+                QTabWidget::pane {
+                    background-color: #f5f5f5;
+                    border: none;
+                }
+                
+                QTabBar {
+                    background-color: #87CEFA;
+                    border: 1px solid #CCCCCC;
+                    padding: 10px;
+                }
+                
+                QTabBar::tab {
+                    background-color: #87CEFA;
+                    color: #000000;
+                    padding: 8px;
+                    border-radius: 5px;
+                }
+                
+                QTabBar::tab:selected {
+                    background-color: #5ab0cd;
+                }
+                
+                QTabBar::tab:hover {
+                    background-color: #5ab0cd;
+                }
+
+                /* Список друзей */
+                QListView {
+                    background-color: #ffffff;
+                    border-radius: 5px;
+                    color: #000000;
+                }
+                
+                QListView::item {
+                    background-color: #f0f0f0;
+                    padding: 8px;
+                    border-radius: 5px;
+                }
+                
+                QListView::item:selected {
+                    background-color: #5ab0cd;
+                }
+                
+                /* Ввод данных */
+                QLineEdit {
+                    background-color: #ffffff;
+                    color: #000000;
+                    border-radius: 5px;
+                    padding: 8px;
+                }
+                QLineEdit:focus {
+                    border: 1px solid #42f554;
+                }
+
+                /* Если есть другие элементы в панели друзей */
+                QWidget {
+                    background-color: #f5f5f5;
                 }
             """)
+
+
 
     def start_server(self):
         def run_server():
